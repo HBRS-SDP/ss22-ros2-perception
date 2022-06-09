@@ -93,7 +93,6 @@ add_library( percption_visuliazation
   ros/src/mir_perception_utils/pointcloud_utils_ros.cpp
 )
 
-
 add_library( scene_segmentation
   common/src/cloud_accumulation.cpp
   common/src/scene_segmentation.cpp
@@ -101,6 +100,8 @@ add_library( scene_segmentation
   ros/src/mir_object_segmentation/scene_segmentation_ros.cpp
   #ros/src/mir_object_segmentation/scene_segmentation_node.cpp
 )
+add_executable(lc_talker ros/src/sample_lifecycle_pubsub.cpp)
+ament_target_dependencies(lc_talker rclcpp rclcpp_lifecycle std_msgs lifecycle_msgs mas_perception_msgs)
 
 add_executable(mmor ros/src/multimodal_object_recognition.cpp)
 ament_target_dependencies(mmor 
@@ -148,7 +149,7 @@ endif()
 
 install(TARGETS
   lifecycle_controller
-  #lc_talker
+  lc_talker
   mmor
   # transformer
   # segmenter
